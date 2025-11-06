@@ -1,12 +1,13 @@
 # DDD API Test Template
 
-A comprehensive API testing framework using **Cucumber (BDD)**, **RestAssured**, and **JUnit5** in a Spring Boot project.
+A lightweight API testing framework using **Cucumber (BDD)**, **RestAssured**, **PicoContainer**, and **JUnit5**.
 
 ## Overview
 
 This project demonstrates how to test REST APIs using:
 - **Cucumber** for Behavior-Driven Development (BDD) test scenarios
 - **RestAssured** for API testing
+- **PicoContainer** for dependency injection (thread-safe scenario context)
 - **JUnit5** as the test runner
 - **JSONPlaceholder API** as the test target (https://jsonplaceholder.typicode.com)
 
@@ -14,6 +15,8 @@ This project demonstrates how to test REST APIs using:
 
 - ✅ BDD-style test scenarios written in Gherkin
 - ✅ Comprehensive API testing (GET, POST, PUT, DELETE)
+- ✅ Thread-safe test context with PicoContainer DI
+- ✅ Lightweight - no Spring framework overhead
 - ✅ HTML test reports with Cucumber
 - ✅ GitHub Actions workflow for automated testing
 - ✅ GitHub Pages integration for test report publishing
@@ -110,12 +113,14 @@ The project includes a GitHub Actions workflow (`.github/workflows/api-tests.yml
 
 ## Technologies Used
 
-- **Spring Boot 4.0.0-RC1**
-- **Cucumber 7.18.0**
-- **RestAssured 5.4.0**
-- **JUnit5 Platform**
-- **AssertJ** for assertions
-- **Jackson** for JSON processing
+- **Java 21**
+- **Cucumber 7.18.0** (BDD framework)
+- **PicoContainer 7.18.0** (lightweight DI for Cucumber)
+- **RestAssured 5.3.2** (API testing)
+- **JUnit5 Platform 6.0.0** (test runner)
+- **AssertJ 3.25.3** (fluent assertions)
+- **Jackson 2.17.0** (JSON processing)
+- **Maven 3.9+** (build tool)
 
 ## API Under Test
 

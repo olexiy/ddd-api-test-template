@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Cucumber" time="6.148" tests="11" skipped="0" failures="0" errors="0">
-<testcase classname="Comments API Testing" name="Get comments for a specific post" time="4.027">
+<testsuite name="Cucumber" time="4.161" tests="11" skipped="0" failures="0" errors="0">
+<testcase classname="Comments API Testing" name="Get comments for a specific post" time="1.951">
 <system-out><![CDATA[
 Given I have a valid API endpoint for posts.................................passed
 When I send a GET request to "/posts/{id}/comments" to get comments for post id 1.passed
@@ -9,7 +9,7 @@ And the response content type should be "application/json; charset=utf-8"...pass
 And I should receive a list of comments for the post........................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Comments API Testing" name="Get all comments" time="0.798">
+<testcase classname="Comments API Testing" name="Get all comments" time="0.541">
 <system-out><![CDATA[
 Given I have a valid API endpoint for posts.................................passed
 When I send a GET request to "/comments"....................................passed
@@ -18,7 +18,7 @@ And the response content type should be "application/json; charset=utf-8"...pass
 And I should receive a list of comments.....................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Posts API Testing" name="Get all posts" time="0.131">
+<testcase classname="Posts API Testing" name="Get all posts" time="0.137">
 <system-out><![CDATA[
 Given I have a valid API endpoint for posts.................................passed
 When I send a GET request to "/posts".......................................passed
@@ -27,7 +27,7 @@ And the response content type should be "application/json; charset=utf-8"...pass
 And I should receive a list of posts........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Posts API Testing" name="Get post by ID" time="0.079">
+<testcase classname="Posts API Testing" name="Get post by ID" time="0.102">
 <system-out><![CDATA[
 Given I have a valid API endpoint for posts.................................passed
 When I send a GET request to "/posts/{id}" with post id 1...................passed
@@ -36,7 +36,7 @@ And the response content type should be "application/json; charset=utf-8"...pass
 And I should receive a post with id 1.......................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Posts API Testing" name="Create a new post" time="0.19">
+<testcase classname="Posts API Testing" name="Create a new post" time="0.164">
 <system-out><![CDATA[
 Given I have a valid API endpoint for posts.................................passed
 Given I have a new post with title "Test Post Title" and body "Test Post Body" for user 1.passed
@@ -46,7 +46,7 @@ And the response content type should be "application/json; charset=utf-8"...pass
 And I should receive the created post with id...............................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Posts API Testing" name="Update an existing post" time="0.286">
+<testcase classname="Posts API Testing" name="Update an existing post" time="0.247">
 <system-out><![CDATA[
 Given I have a valid API endpoint for posts.................................passed
 Given I have an updated post with id 1, title "Updated Post Title" and body "Updated Post Body".passed
@@ -56,7 +56,7 @@ And the response content type should be "application/json; charset=utf-8"...pass
 And I should receive the updated post.......................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Posts API Testing" name="Delete a post" time="0.138">
+<testcase classname="Posts API Testing" name="Delete a post" time="0.178">
 <system-out><![CDATA[
 Given I have a valid API endpoint for posts.................................passed
 When I send a DELETE request to "/posts/{id}" with post id 1................passed
@@ -64,7 +64,7 @@ Then the response status code should be 200.................................pass
 And the post should be deleted successfully.................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Posts API Testing" name="Get comments for a post" time="0.067">
+<testcase classname="Posts API Testing" name="Get comments for a post" time="0.145">
 <system-out><![CDATA[
 Given I have a valid API endpoint for posts.................................passed
 When I send a GET request to "/posts/{id}/comments" to get comments for post id 1.passed
@@ -73,7 +73,7 @@ And the response content type should be "application/json; charset=utf-8"...pass
 And I should receive a list of comments for the post........................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Users API Testing" name="Get all users" time="0.068">
+<testcase classname="Users API Testing" name="Get all users" time="0.064">
 <system-out><![CDATA[
 Given I have a valid API endpoint for users.................................passed
 When I send a GET request to users endpoint "/users"........................passed
@@ -82,7 +82,7 @@ And the response content type should be "application/json; charset=utf-8"...pass
 And I should receive a list of users........................................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Users API Testing" name="Get user by ID" time="0.044">
+<testcase classname="Users API Testing" name="Get user by ID" time="0.32">
 <system-out><![CDATA[
 Given I have a valid API endpoint for users.................................passed
 When I send a GET request to users endpoint "/users/{id}" with user id 1....passed
@@ -92,7 +92,7 @@ And I should receive a user with id 1.......................................pass
 And the user should have valid data structure...............................passed
 ]]></system-out>
 </testcase>
-<testcase classname="Users API Testing" name="Validate user data structure" time="0.059">
+<testcase classname="Users API Testing" name="Validate user data structure" time="0.06">
 <system-out><![CDATA[
 Given I have a valid API endpoint for users.................................passed
 When I send a GET request to users endpoint "/users/{id}" with user id 2....passed

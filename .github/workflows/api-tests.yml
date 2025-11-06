@@ -1,0 +1,62 @@
+name: API Tests with Cucumber
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_tests:
+        description: 'Run API Tests'
+        required: true
+        default: 'true'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+      
+      - name: Configure Maven for Java 21
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME"
+          java -version
+      
+      - name: Run tests with Maven
+        run: mvn clean test verify
+      
+      - name: Generate Cucumber HTML Report
+        if: always()
+        run: |
+          mkdir -p target/cucumber-reports
+          echo "Reports generated in target/cucumber-reports"
+      
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            target/cucumber-reports/**
+            target/surefire-reports/**
+          retention-days: 30
+      
+      - name: Publish test results to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/cucumber-reports
+          destination_dir: reports
+          keep_files: false
+

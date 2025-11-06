@@ -88,4 +88,21 @@ public class UsersStepDefinitions {
             throw new AssertionError("Failed to validate user data structure: " + e.getMessage(), e);
         }
     }
+
+    @Then("all users should have valid email addresses")
+    public void all_users_should_have_valid_email_addresses() {
+        try {
+            List<User> users = context.getResponse().jsonPath().getList("", User.class);
+            assertThat(users).isNotEmpty();
+
+            for (User user : users) {
+                assertThat(user.getEmail())
+                    .as("User %d email should be valid", user.getId())
+                    .isNotNull()
+                    .matches("^[A-Za-z0-9+_.-]+@(.+)$");
+            }
+        } catch (Exception e) {
+            throw new AssertionError("Failed to validate all users' emails: " + e.getMessage(), e);
+        }
+    }
 }

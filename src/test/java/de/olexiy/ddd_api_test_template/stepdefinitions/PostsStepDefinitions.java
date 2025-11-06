@@ -193,4 +193,85 @@ public class PostsStepDefinitions {
             throw new AssertionError("Failed to deserialize comments list: " + e.getMessage(), e);
         }
     }
+
+    // Negative test step definitions
+
+    @Given("I have an invalid post with empty title and body for user {int}")
+    public void i_have_an_invalid_post_with_empty_title_and_body_for_user(Integer userId) {
+        postPayload = new Post(userId, "", "");
+    }
+
+    @Then("the created post should have empty title and body")
+    public void the_created_post_should_have_empty_title_and_body() {
+        try {
+            Post createdPost = context.getResponse().as(Post.class);
+            assertThat(createdPost.getId()).isNotNull();
+            assertThat(createdPost.getTitle()).isEmpty();
+            assertThat(createdPost.getBody()).isEmpty();
+        } catch (Exception e) {
+            throw new AssertionError("Failed to validate empty post: " + e.getMessage(), e);
+        }
+    }
+
+    @Then("I should receive an empty comments list")
+    public void i_should_receive_an_empty_comments_list() {
+        try {
+            List<Comment> comments = context.getResponse().jsonPath().getList("", Comment.class);
+            assertThat(comments).isEmpty();
+        } catch (Exception e) {
+            throw new AssertionError("Failed to deserialize comments list: " + e.getMessage(), e);
+        }
+    }
+
+    @Given("I have an updated post with id {int} and very long title")
+    public void i_have_an_updated_post_with_id_and_very_long_title(Integer postId) {
+        String longTitle = "A".repeat(500); // 500 character title
+        String body = "Test body for long title validation";
+
+        try {
+            RequestSpecification tempRequest = given().spec(ApiConfig.getRequestSpec());
+            Response existingPostResponse = tempRequest.get("/posts/" + postId);
+            Post existingPost = existingPostResponse.as(Post.class);
+
+            postPayload = new Post();
+            postPayload.setId(postId);
+            postPayload.setTitle(longTitle);
+            postPayload.setBody(body);
+            postPayload.setUserId(existingPost.getUserId());
+        } catch (Exception e) {
+            postPayload = new Post();
+            postPayload.setId(postId);
+            postPayload.setTitle(longTitle);
+            postPayload.setBody(body);
+            postPayload.setUserId(1);
+        }
+    }
+
+    @Then("the response should contain the long title")
+    public void the_response_should_contain_the_long_title() {
+        try {
+            Post updatedPost = context.getResponse().as(Post.class);
+            assertThat(updatedPost.getTitle()).isEqualTo(postPayload.getTitle());
+            assertThat(updatedPost.getTitle().length()).isGreaterThan(400);
+        } catch (Exception e) {
+            throw new AssertionError("Failed to validate long title: " + e.getMessage(), e);
+        }
+    }
+
+    @Then("all posts should have required fields")
+    public void all_posts_should_have_required_fields() {
+        try {
+            List<Post> posts = context.getResponse().jsonPath().getList("", Post.class);
+            assertThat(posts).isNotEmpty();
+
+            for (Post post : posts) {
+                assertThat(post.getId()).as("Post ID should not be null").isNotNull();
+                assertThat(post.getUserId()).as("Post userId should not be null").isNotNull();
+                assertThat(post.getTitle()).as("Post title should not be null").isNotNull();
+                assertThat(post.getBody()).as("Post body should not be null").isNotNull();
+            }
+        } catch (Exception e) {
+            throw new AssertionError("Failed to validate all posts: " + e.getMessage(), e);
+        }
+    }
 }

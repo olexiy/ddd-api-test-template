@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="3.862" tests="11" skipped="0" failures="0" errors="0">
+<testcase classname="Comments API Testing" name="Get comments for a specific post" time="2.008">
+<system-out><![CDATA[
+Given I have a valid API endpoint for posts.................................passed
+When I send a GET request to "/posts/{id}/comments" to get comments for post id 1.passed
+Then the response status code should be 200.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive a list of comments for the post........................passed
+]]></system-out>
+</testcase>
+<testcase classname="Comments API Testing" name="Get all comments" time="0.527">
+<system-out><![CDATA[
+Given I have a valid API endpoint for posts.................................passed
+When I send a GET request to "/comments"....................................passed
+Then the response status code should be 200.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive a list of comments.....................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Posts API Testing" name="Get all posts" time="0.128">
+<system-out><![CDATA[
+Given I have a valid API endpoint for posts.................................passed
+When I send a GET request to "/posts".......................................passed
+Then the response status code should be 200.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive a list of posts........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Posts API Testing" name="Get post by ID" time="0.077">
+<system-out><![CDATA[
+Given I have a valid API endpoint for posts.................................passed
+When I send a GET request to "/posts/{id}" with post id 1...................passed
+Then the response status code should be 200.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive a post with id 1.......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Posts API Testing" name="Create a new post" time="0.204">
+<system-out><![CDATA[
+Given I have a valid API endpoint for posts.................................passed
+Given I have a new post with title "Test Post Title" and body "Test Post Body" for user 1.passed
+When I send a POST request to "/posts" with the post data...................passed
+Then the response status code should be 201.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive the created post with id...............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Posts API Testing" name="Update an existing post" time="0.294">
+<system-out><![CDATA[
+Given I have a valid API endpoint for posts.................................passed
+Given I have an updated post with id 1, title "Updated Post Title" and body "Updated Post Body".passed
+When I send a PUT request to "/posts/{id}" with the updated post data.......passed
+Then the response status code should be 200.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive the updated post.......................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Posts API Testing" name="Delete a post" time="0.143">
+<system-out><![CDATA[
+Given I have a valid API endpoint for posts.................................passed
+When I send a DELETE request to "/posts/{id}" with post id 1................passed
+Then the response status code should be 200.................................passed
+And the post should be deleted successfully.................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Posts API Testing" name="Get comments for a post" time="0.067">
+<system-out><![CDATA[
+Given I have a valid API endpoint for posts.................................passed
+When I send a GET request to "/posts/{id}/comments" to get comments for post id 1.passed
+Then the response status code should be 200.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive a list of comments for the post........................passed
+]]></system-out>
+</testcase>
+<testcase classname="Users API Testing" name="Get all users" time="0.051">
+<system-out><![CDATA[
+Given I have a valid API endpoint for users.................................passed
+When I send a GET request to users endpoint "/users"........................passed
+Then the response status code should be 200.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive a list of users........................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Users API Testing" name="Get user by ID" time="0.058">
+<system-out><![CDATA[
+Given I have a valid API endpoint for users.................................passed
+When I send a GET request to users endpoint "/users/{id}" with user id 1....passed
+Then the response status code should be 200.................................passed
+And the response content type should be "application/json; charset=utf-8"...passed
+And I should receive a user with id 1.......................................passed
+And the user should have valid data structure...............................passed
+]]></system-out>
+</testcase>
+<testcase classname="Users API Testing" name="Validate user data structure" time="0.055">
+<system-out><![CDATA[
+Given I have a valid API endpoint for users.................................passed
+When I send a GET request to users endpoint "/users/{id}" with user id 2....passed
+Then the response status code should be 200.................................passed
+And the user should have valid data structure...............................passed
+]]></system-out>
+</testcase>
+</testsuite>

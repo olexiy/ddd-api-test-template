@@ -90,7 +90,23 @@ The project includes a GitHub Actions workflow (`.github/workflows/api-tests.yml
 2. Select **API Tests with Cucumber** workflow
 3. Click **Run workflow**
 4. Select the branch and click **Run workflow**
-5. After completion, view reports at: `https://<username>.github.io/ddd-api-test-template/reports/`
+5. After completion, view reports at: `https://<username>.github.io/ddd-api-test-template/reports/cucumber.html`
+
+### Configure GitHub Pages (First Time Setup)
+
+To view test reports online, you need to enable GitHub Pages:
+
+1. Go to your repository **Settings**
+2. Navigate to **Pages** (under "Code and automation")
+3. Under **Source**, select **Deploy from a branch**
+4. Under **Branch**, select:
+   - Branch: `gh-pages`
+   - Folder: `/ (root)`
+5. Click **Save**
+6. Wait 2-5 minutes for GitHub to deploy your site
+7. Reports will be available at: `https://<username>.github.io/ddd-api-test-template/reports/cucumber.html`
+
+**Note**: The workflow automatically creates and updates the `gh-pages` branch with test reports. You only need to configure GitHub Pages settings once.
 
 ## Test Scenarios
 
